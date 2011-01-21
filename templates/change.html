@@ -1,0 +1,11 @@
+<!doctype html>
+<title>Change Finder</title>
+<h1>Enter information in fields below</h1>
+<form method="POST" action=".">
+{{ form.csrf }}
+<div>{{ form.cost.label }} {{ form.cost(size=20) }}</div>
+<div>{{ form.tender.label }} {{ form.tender(size=20) }}</div>
+    <input type="submit" value="Go">
+</form>
+{% block body %}
+{% endblock %}

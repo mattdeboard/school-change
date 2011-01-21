@@ -1,0 +1,13 @@
+{% extends "change.html" %}
+{% block body %}
+<h2>Results:</h2>
+<div>Cost: ${{ c }}</div>
+<div>Amount Tendered: ${{ t }}</div>
+<ol>
+{% for result in vals %}
+<li>{{ result }}</li>
+{% endfor %}
+</ol>
+{% endblock %}
+
+
