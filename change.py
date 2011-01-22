@@ -15,15 +15,16 @@ def user_inputs():
     if form.validate_on_submit():
         c = form.cost.data
         t = form.tender.data
-        print c,t
+        change = t-c
         c = "%.2f" % c
         t = "%.2f" % t
         vals = calc_coins(change)
-        return render_template("results.html", form=form, vals=vals, c=c, t=t)
+        render_template("results.html", vals=vals, form=form)
     else:
         return render_template("change.html", form=form)    
 
-def calc_coins(change):
+
+def calc_coins(change, form):
     d = {20:'twenties',
          10:'tens',
          5:'fives',
@@ -32,6 +33,7 @@ def calc_coins(change):
          .1:'dimes',
          .05:'nickels',
          .01:'pennies'}
+
     denoms = [20, 10, 5, 1, .25, .1, .05, .01]
     vals = []
     i = 0
@@ -40,7 +42,8 @@ def calc_coins(change):
             vals.append("%s: %d" % (d[denoms[i]], change/denoms[i]))
             change = change%denoms[i]
         i += 1
-    return vals  
+
+    return vals
     
 if __name__ == "__main__":
     app.run(debug=True)
