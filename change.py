@@ -10,8 +10,9 @@ class ChangeForm(Form):
     
 @app.route('/', methods=("GET", "POST"))
 def user_inputs():
+    '''Instantiates ChangeForm() (which subclasses flaskext.wtf.Form()) and renders change.html on GET. Once user inputs the requested data and submits, this function then calls calc_coins() which executes the logic which is the target of this assignment.'''
     form = ChangeForm()
-    form.errors
+    
     if form.validate_on_submit():
         c = form.cost.data
         t = form.tender.data
@@ -24,7 +25,8 @@ def user_inputs():
         return render_template("change.html", form=form)    
 
 
-def calc_coins(change, form):
+def calc_coins(change):
+    '''This function does the logical heavy lifting required by this assignment. Returns a list of strings which are then iteratively rendered by Flask on the page.'''
     d = {20:'twenties',
          10:'tens',
          5:'fives',
