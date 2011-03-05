@@ -1,8 +1,9 @@
+from secret-info import secret_key
 from flask import Flask, request, render_template
 from flaskext.wtf import Form, FloatField, Required
 
 app = Flask(__name__)
-app.secret_key = 'b\xcaf\xde\xc3\xc6\xdc\x03\xf0ls\xd6\x08\xe7\x9a2\x02j\xdf\xa7n\xe5\xf4\xdd'
+app.secret_key = secret_key
 
 class ChangeForm(Form):
     cost = FloatField("Total cost of item: $")
@@ -10,7 +11,10 @@ class ChangeForm(Form):
     
 @app.route('/', methods=("GET", "POST"))
 def user_inputs():
-    '''Instantiates ChangeForm() (which subclasses flaskext.wtf.Form()) and renders change.html on GET. Once user inputs the requested data and submits, this function then calls calc_coins() which executes the logic which is the target of this assignment.'''
+    '''Instantiates ChangeForm() (which subclasses flaskext.wtf.Form()) 
+    and renders change.html on GET. Once user inputs the requested data 
+    and submits, this function then calls calc_coins() which executes 
+    the logic which is the target of this assignment.'''
     form = ChangeForm()
     
     if form.validate_on_submit():
@@ -26,7 +30,9 @@ def user_inputs():
 
 
 def calc_coins(change):
-    '''This function does the logical heavy lifting required by this assignment. Returns a list of strings which are then iteratively rendered by Flask on the page.'''
+    '''This function does the logical heavy lifting required by this 
+    assignment. Returns a list of strings which are then iteratively 
+    rendered by Flask on the page.'''
     d = {20:'twenties',
          10:'tens',
          5:'fives',
