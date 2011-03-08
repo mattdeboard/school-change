@@ -24,7 +24,7 @@ def user_inputs():
         c = "%.2f" % c
         t = "%.2f" % t
         vals = calc_coins(change)
-        render_template("results.html", vals=vals, form=form, c=c, t=t)
+        return render_template("results.html", vals=vals, form=form, c=c, t=t)
     else:
         return render_template("change.html", form=form)    
 
