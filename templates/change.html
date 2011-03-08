@@ -3,8 +3,16 @@
 <h1>Enter information in fields below</h1>
 <form method="POST" action="">
 {{ form.csrf }}
-<div>{{ form.cost.label }} {{ form.cost(size=20) }}</div>
-<div>{{ form.tender.label }} {{ form.tender(size=20) }}</div>
+{% with messages = get_flashed_messages() %}
+{% for message in messages %}
+<li>{{ message }}</li>
+{% endfor %}
+{% endwith %}
+{% for field in form %}
+{% if field["type"] != "HiddenField" %}
+<div>{{ field.label }} {{ field(size=20) }}</div>
+{% endif %}
+{% endfor %}
     <input type="submit" value="Go">
 </form>
 {% block body %}
