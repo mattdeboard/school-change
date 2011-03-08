@@ -1,2 +1,4 @@
-secret-info.py
+secret.py
 *.pyc
+fabfile.py
+*.py~

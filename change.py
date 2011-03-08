@@ -1,4 +1,4 @@
-from secret-info import secret_key
+from secret import secret_key
 from flask import Flask, request, render_template
 from flaskext.wtf import Form, FloatField, Required
 
